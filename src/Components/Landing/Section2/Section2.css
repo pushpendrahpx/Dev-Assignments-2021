@@ -1,0 +1,38 @@
+.Section2{
+}
+.section2-row{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50% ;
+}
+.section2-row > div{
+    text-align: center;
+}
+.section2-left{
+    text-align: center;
+    width: 100%;
+}
+.section2-right{
+    position: relative;
+    top:20vh;
+    width: 100%;
+}
+.section2-right > .section2-title{
+font-weight: bold;
+font-size: 96px;
+line-height: 100px;
+letter-spacing: -5px;
+color: #000000;
+
+}
+.section2-left-container{
+    position: relative;
+    right: 0;
+    top:40vh;
+    display: grid;
+    place-content: center;
+    
+}
+.section2-left-container > div{
+    width: 512px;
+}

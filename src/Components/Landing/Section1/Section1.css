@@ -1,0 +1,56 @@
+.Section1{
+    background: #DA2929;
+    color:#ffffff;
+    height:  calc(100vh - 75px);
+}
+.Section1Pokeball{
+    position: absolute;
+    top: 30vh;
+    left: -10vw;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.Pikachu{
+    position: absolute;
+    right:5vw;bottom:0;
+}
+.Bulbasor{
+    position: absolute;
+    right:35vw;bottom:0vh;
+}
+.Charmander{
+    position: absolute;
+    right:45vw;bottom:30vh;
+
+}
+.Pokemon1{
+    position: absolute;
+    right:65vw;bottom:60vh;
+
+}
+.Section1Title{
+    position: absolute;
+    top:calc(75px + 12vh);
+    right:10vw;
+    width:30vw;
+}
+.Section1TitleT1{
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 84px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    
+}
+.Section1TitleT1B1{
+    
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 84px;
+    text-transform: capitalize;
+    color: #FFD63E;
+    
+}
