@@ -1,0 +1,7 @@
+{
+    "login":"/api/v1/user/login",
+    "addFavPokemon":"/api/v1/user/addFavPokemon",
+    "getFavPokemon":"/api/v1/user/getFavPokemon",
+    "checkFavPokemon":"/api/v1/user/checkFavPokemon",
+    "GetPokemonList":"/api/v2/pokemon"
+}

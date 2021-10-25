@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import BrandLogo from "../../MicroComponents/BrandLogo/BrandLogo";
 import './Navbar.css';
 import NavbarItem from "./NavbarItem/NavbarItem";
@@ -11,7 +11,7 @@ let Navbar = ()=>{
     const [visible, setVisible] = React.useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
     const [modalText, setModalText] = React.useState('Content of the modal');
-  
+
     const showModal = () => {
       setVisible(true);
     };
@@ -32,15 +32,16 @@ let Navbar = ()=>{
     
     return <div className="Navbar" >
         <div className="Navbar_left">
-            <BrandLogo />
+            <Link to="/"><BrandLogo /></Link>
         </div>
         <div style={{display:'flex'}}>
             <NavbarItem text="Home" to="/home" />
-            <NavbarItem text="Trending" to="/home" />
-            <NavbarItem text="Merchandise" to="/home" />
-            <NavbarItem text="Forums" to="/home" />
-            <a href="mailto:u19ee003@eed.svnit.ac.in"> <NavbarItem text="Reach Us" isButton={true} /> </a>
-            <NavbarItem text="Log In/Register"  tocall={showModal} isButton={true} />
+            <NavbarItem text="Trending" to="/trending" />
+            <NavbarItem text="Merchandise" to="/merchandise" />
+            <NavbarItem text="Forums" to="/forums" />
+            <a href="mailto:u19ee003@eed.svnit.ac.in"> <NavbarItem text="Reach Us" isButton={true}  isSpecial={false} /> </a>
+            <NavbarItem text="Log In/Register"  tocall={showModal} isButton={true} isSpecial={true} isSpecial={true} />
+         
         </div>
         <Modal
             title="Account Form"

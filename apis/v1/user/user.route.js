@@ -14,43 +14,41 @@ const token2payload = require("./../../../functions/token2payload.function")
 
 
 
-router.post("/register",RegisterValidation,async (req,res)=>{
+router.post("/login",async (req,res)=>{
     try{    
         
-        let {email,password,favs} = req.body;
-        
-        let hashedPassword = CryptoJS.SHA512(password).toString();
-
-        let user = new UserModal({email:email,password:hashedPassword,favs:favs})
-        
-        let userstatus = await user.save()
-        if(!userstatus) throw {ok:false,message:"FAILED to save"}
-
-        delete user.password;
-
-        let accessToken = jwt.sign(JSON.stringify(userstatus),process.env.JWT_SECRET_KEY)
-        res.status(200).json({ok:true,message:"Object created",data:user,accessToken:accessToken})
-        
-    }catch(error){
-        console.log(error)
-        res.status(500).send(error)
-    }
-})
-
-router.post("/login",loginMiddleware,async (req,res)=>{
-    try{    
         let {email,password} = req.body;
-        let hashedPassword = await CryptoJS.SHA512(password).toString();
-
-        let user = await UserModal.findOne({email:email})
-        console.log(password+"+++"+hashedPassword)
-        if(user.password != hashedPassword) throw {ok:false,message:"Incorrect Password or Email"}
-
         
-        let accessToken = await jwt.sign(JSON.stringify(user),process.env.JWT_SECRET_KEY)
 
-        delete user.password
-        res.status(200).json({ok:true,message:"Login success",data:user,accessToken:accessToken})
+        if(await UserModal.exists({email:email})){
+            let hashedPassword = await CryptoJS.SHA512(password).toString();
+    
+            let user = await UserModal.findOne({email:email})
+            // console.log(password+"+++"+hashedPassword)
+            if(user.password != hashedPassword) throw {ok:false,message:"Incorrect Password or Email"}
+    
+            
+            let accessToken = await jwt.sign(JSON.stringify(user),process.env.JWT_SECRET_KEY)
+    
+            delete user.password
+            res.status(200).json({ok:true,message:"Login success",path:"login",data:user,accessToken:accessToken})
+        }else{
+            // Registration Process
+            let hashedPassword = await CryptoJS.SHA512(password).toString();
+            
+            let {favs} = req.body;
+            let user = new UserModal({email:email,password:hashedPassword,favs:favs})
+        
+            let userstatus = await user.save()
+            if(!userstatus) throw {ok:false,message:"FAILED to save"}
+
+            delete user.password;
+
+            let accessToken = jwt.sign(JSON.stringify(userstatus),process.env.JWT_SECRET_KEY)
+            res.status(200).json({ok:true,message:"Object created",path:"register",data:user,accessToken:accessToken})
+        }
+        
+        
         
     }catch(error){
         console.log(error)
