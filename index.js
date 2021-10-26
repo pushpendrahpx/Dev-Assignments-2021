@@ -20,10 +20,12 @@ app.use("*",(req,res,next)=>{
 })
 
 app.use("/api/v1/user",UserController)
-app.get("/",(req,res)=>{
-    res.send("HELLO")
-})
 
 app.listen(PORT,()=>{
     console.log(`PORT Running at ${PORT}`)
 })
+
+
+app.use("*/static/", express.static(__dirname + '/frontend/build/static'));
+
+app.use("*",express.static(__dirname+"/frontend/build"));
