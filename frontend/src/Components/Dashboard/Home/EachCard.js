@@ -13,6 +13,7 @@ import { Link } from "react-router-dom"
 
 const Pin = async (id,name)=>{
     try{
+        notification["info"]({message:"Sending request to save, just few seconds please ..."})
             console.log(id)
         let response = await fetch(Hosts.localServer+Endpoints.addFavPokemon,{
             method:"PUT",
