@@ -26,7 +26,7 @@ let Navbar = ()=>{
     };
   
     const handleCancel = () => {
-      console.log('Clicked cancel button');
+      // console.log('Clicked cancel button');
       setVisible(false);
     };
     

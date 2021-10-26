@@ -7,6 +7,8 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import cookies from "./functions/cookies";
 import { notification } from "antd";
+import PokemonProfile from "./Pages/PokemonProfile/PokemonProfile";
+import Preloader from "./Components/Preloader/Preloader";
 let defaultValue = {
   user:{},
   isLoggedIn:false
@@ -44,10 +46,12 @@ function App() {
         user:prevObj.data,
         isLoggedIn:true
       });
-      console.log("APP STATE SAVED ON RELOAD")
+      // console.log("APP STATE SAVED ON RELOAD")
       setApploaded(true)
     }else{
-      notification["error"]("failed to fetch")
+      notification["error"]({
+        message:"Not Logged In"
+      })
       setApploaded(true)
     }
   },[])
@@ -61,11 +65,12 @@ function App() {
                 <Switch>
                   <Route path="/" exact component={LandingPage} />
                   <Route path="/home" exact component={Dashboard} />
+                  <Route path="/pokemon/:id" exact component={PokemonProfile} />
                 </Switch>
               </BrowserRouter>
             </MainContext.Provider>
         : 
-        <div>
+        <div style={{position:"absolute",width:"100vw",height:"calc(100vh-256px)",top:"256px"}}>
           Loading ...
         </div>
       }

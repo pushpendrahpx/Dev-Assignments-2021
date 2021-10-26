@@ -1,8 +1,10 @@
 import Search from "antd/lib/input/Search"
 import React, { useEffect,useState } from "react"
-import { Pagination, Tabs } from 'antd';
+import { Pagination, Tabs, Spin } from 'antd';
 import Title from "antd/lib/skeleton/Title";
 import EachCard from "./Home/EachCard";
+import { LoadingOutlined } from '@ant-design/icons';
+
 
 import Hosts from './../../Hosts.json'
 import Endpoints from "./../../Endpoints.json"
@@ -13,6 +15,8 @@ const { TabPane } = Tabs;
 function callback(key) {
     // console.log(key);
   }
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 64 }} spin />;
 
 
 const Home = ()=>{
@@ -41,8 +45,9 @@ const Home = ()=>{
     <div style={{padding:'10px', display:'flex',flexWrap:"wrap"}}>
 
 
-    <Pagination defaultCurrent={1} total={1118} onChange={onPaginationChangeHandle} style={{width:"100%"}} />
+    <Pagination defaultCurrent={1} total={1118/2} onChange={onPaginationChangeHandle} style={{width:"100%"}} />
     <br />
+        {pageAssets.length == 0 ? <Spin indicator={antIcon} /> : ""}
         {pageAssets.length != 0 && pageAssets.map((eachPokemon,index)=>{
             // console.log(eachPokemon)
             return <EachCard eachPokemon={eachPokemon} key={index} id={index+1 + (pageState.paginationPosition-1)*20} />

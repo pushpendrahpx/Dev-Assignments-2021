@@ -2,6 +2,7 @@ import React from "react"
 import './eachResult.css';
 import { List, Avatar, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 const listData = [{
     href: 'https://ant.design',
@@ -36,11 +37,11 @@ const EachResult = ({eachResult}) =>{
         style={{padding:0}}
         
       >
+        
         <List.Item.Meta
-    style={{padding:0}}
-          avatar={<Avatar src={item.avatar} />}
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.description}
+        
+            avatar={<Avatar src={eachResult.img} style={{width:"64px",padding:0}} />}
+          title={<Link to={eachResult.to}>{eachResult.name}</Link>}
         />
       </List.Item>
     )}

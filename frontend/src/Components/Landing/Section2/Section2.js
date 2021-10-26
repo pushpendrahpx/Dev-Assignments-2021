@@ -2,17 +2,21 @@ import Search from "antd/lib/input/Search";
 import React, { useState } from "react";
 import "./Section2.css"
 import shephard from './../../../Assets/shephard.png'
+import { notification } from "antd";
 import EachResult from "./EachResult/EachResult";
 let Section2 = ()=>{
-    const onSearch = value => console.log(value);
+    const onSearch = value => {
+        // console.log(value);
+        notification["error"]({message:"We don't have APIs to search through keywords."},2)
+    }
     const onChange = value => console.log(value);
 
     
 
     let [results,setResults] = useState([
-        {icon:"",name:"Pikachu"},
-        {icon:"",name:"Pikachu"},
-        {icon:"",name:"Pikachu"},
+        {icon:"",name:"Pikachu",to:"/pokemon/25",img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"},
+        {icon:"",name:"Bulbasor",to:"/pokemon/1",img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"},
+        {icon:"",name:"Charmander",to:"/pokemon/4",img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"},
     ])
 
     return <div className="Section2">
@@ -37,7 +41,7 @@ let Section2 = ()=>{
                         <div style={{color:"#555050"}}>Results : </div>
                         <div className="ResultsContainer">
                             {results.map((eachResult,index)=>{
-                                return <EachResult eachResult={eachResult} />
+                                return <EachResult key={index} eachResult={eachResult} />
                             })}
                         </div>
                     </div>

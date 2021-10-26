@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react"
 import Hosts from "./../../../Hosts.json"
 import Endpoints from "./../../../Endpoints.json";
 import cookies from "../../../functions/cookies"
+import { Link } from "react-router-dom"
 
 
 
@@ -64,9 +65,12 @@ const EachCard = ({eachPokemon,id})=>{
 
     ]}
   >
-    <Meta
-      title={eachPokemon.name}
-    />
+    <Link to={"/pokemon/"+id} style={{color:"blue"}}>
+     <span
+        
+      >{eachPokemon.name + "(id="+id+")"}
+        </span>
+    </Link>
   </Card>
     </div>
 }

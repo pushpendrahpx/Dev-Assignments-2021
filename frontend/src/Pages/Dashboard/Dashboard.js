@@ -8,6 +8,8 @@ import Home from "../../Components/Dashboard/Home";
 import Favs from "../../Components/Dashboard/Favs";
 import Trending from "../../Components/Dashboard/Trending";
 import RandomC from "../../Components/Dashboard/Random";
+import BrandLogo from "../../MicroComponents/BrandLogo/BrandLogo";
+import { Link } from "react-router-dom";
 const { SubMenu } = Menu;
 let Dashboard = ()=>{
     let [dashboardState,SetDashboardState] = useState({
@@ -17,7 +19,7 @@ let Dashboard = ()=>{
     })
     
     let appState = useContext(MainContext)
-    console.log(appState)
+    // console.log(appState)
 
 
      
@@ -47,7 +49,7 @@ let Dashboard = ()=>{
    
 
 
-      console.log(dashboardState)
+    //   console.log(dashboardState)
     if( dashboardState.orig == true  && dashboardState.result==false){
         return  <Redirect to="/" /> 
     }
@@ -58,21 +60,18 @@ let Dashboard = ()=>{
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode="inline"
-        
+    
       >   
-      <Menu.Item key="0" disabled={true} style={{textAlign:"center"}}> <span  style={{color:"#000"}}>  <HomeOutlined /> Dashboard Actions </span> </Menu.Item>
+      <div style={{width:"100%",textAlign:"center",padding:"5px"}}><Link to="/"><BrandLogo /></Link></div>
+      <Menu.Item key="0" disabled={true} style={{textAlign:"center"}}> <span  style={{color:"#000",userSelect:"none",cursor:"none"}}>  <HomeOutlined /> Dashboard Actions </span> </Menu.Item>
         <Menu.Item key="1"> <HomeOutlined /> Home</Menu.Item>
         <Menu.Item key="2"> <HeartOutlined /> Favs</Menu.Item>
-        <Menu.Item key="3"> <FireOutlined /> Trending</Menu.Item>
-        <Menu.Item key="4"> <SyncOutlined  /> Random</Menu.Item>
         <Menu.Item key="5" > <LogoutOutlined /> Logout</Menu.Item>
       </Menu>
       <div style={{width:"100%"}}>
         <div>
             {dashboardState.section == 1 ? <Home /> : ""}
             {dashboardState.section == 2 ? <Favs /> : ""}
-            {dashboardState.section == 3 ? <Trending /> : ""}
-            {dashboardState.section == 4 ? <RandomC /> : ""}
         </div>
       </div>
     </div>

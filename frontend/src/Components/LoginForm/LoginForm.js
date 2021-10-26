@@ -19,7 +19,7 @@ const LoginForm = ({visible,onOk,confirmLoading,onCancel})=>{
 
     const onFinish = async (values) => {
         try{
-            console.log('Success:', values);
+            // console.log('Success:', values);
             setFormState({isLoading:true})
 
 
@@ -62,7 +62,7 @@ const LoginForm = ({visible,onOk,confirmLoading,onCancel})=>{
       };
     
       const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        // console.log('Failed:', errorInfo);
       };
 
 
