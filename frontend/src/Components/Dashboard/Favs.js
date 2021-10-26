@@ -18,6 +18,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 64 }} spin />;
 
 const Favs = ()=>{
     let [pokemons,setPokemons] = useState([])
+    let [isResult,setIsResult] = useState(false)
     useEffect(async ()=>{
         let res = await fetch(Hosts.localServer+Endpoints.getFavPokemon,{
             method:"GET",
@@ -30,6 +31,14 @@ const Favs = ()=>{
         // console.log(data)
     
         let ids = data.data
+        
+        if(ids.length == 0) {
+            setIsResult(true)
+            return;
+        }
+
+
+
         let allpoks = []
         let i = 0;
         while(i < ids.length){
@@ -39,6 +48,7 @@ const Favs = ()=>{
 
             if(i == ids.length-1){
                 // console.log(allpoks)
+                setIsResult(true)
                 setPokemons(allpoks)
             }
             i++;
@@ -46,7 +56,8 @@ const Favs = ()=>{
     },[])
     return <div>
          <Card title="List of your favourite pokemons" style={{textAlign:"center"}}>
-         {pokemons.length == 0 ? <Spin indicator={antIcon} /> : ""}
+         {isResult==false && pokemons.length == 0 ? <Spin indicator={antIcon} /> : ""}
+         {isResult == true && pokemons.length == 0 ? <div>No Pokemon Saved</div> : ""}
          {pokemons?.map((each,i)=>{
               return <div key={i} style={{paddingLeft:"10px",paddingRight:"10px"}}>
                   <Card.Grid style={gridStyle}>
