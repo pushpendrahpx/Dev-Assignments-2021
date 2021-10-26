@@ -1,4 +1,4 @@
 {
-    "localServer":"http://localhost:8000",
+    "localServer":"",
     "pokeapi":"https://pokeapi.co"
 }
