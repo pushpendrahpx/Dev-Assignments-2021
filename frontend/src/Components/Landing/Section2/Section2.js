@@ -4,6 +4,7 @@ import "./Section2.css"
 import shephard from './../../../Assets/shephard.png'
 import { notification } from "antd";
 import EachResult from "./EachResult/EachResult";
+import { Link } from "react-router-dom";
 let Section2 = ()=>{
     const onSearch = value => {
         // console.log(value);
@@ -41,7 +42,7 @@ let Section2 = ()=>{
                         <div style={{color:"#555050"}}>Results : </div>
                         <div className="ResultsContainer">
                             {results.map((eachResult,index)=>{
-                                return <EachResult key={index} eachResult={eachResult} />
+                                return <div className="seachresultItem"><Link to={eachResult.to}><EachResult key={index} eachResult={eachResult} /></Link></div>
                             })}
                         </div>
                     </div>

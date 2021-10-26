@@ -36,3 +36,10 @@ color: #000000;
 .section2-left-container > div{
     width: 512px;
 }
+
+
+.seachresultItem:hover{
+    transition-duration: 0.2s;
+    background: #f7f7f7;
+
+}
